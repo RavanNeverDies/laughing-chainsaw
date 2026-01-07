@@ -1,0 +1,85 @@
+{
+    "name": "Dental Institute - Professional Dental Care",
+    "short_name": "Dental Institute",
+    "description": "Modern dental care services with online appointment booking, patient portal, and 24/7 emergency support.",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#667eea",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "en",
+    "icons": [
+        {
+            "src": "favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "icons/icon-72x72.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/icon-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/icon-128x128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/icon-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/icon-152x152.png",
+            "sizes": "152x152",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Book Appointment",
+            "short_name": "Book",
+            "description": "Schedule a dental appointment",
+            "url": "/appointments.html",
+            "icons": [{ "src": "icons/appointment-96.png", "sizes": "96x96" }]
+        },
+        {
+            "name": "Emergency",
+            "short_name": "Emergency",
+            "description": "24/7 Emergency dental care",
+            "url": "/emergency.html",
+            "icons": [{ "src": "icons/emergency-96.png", "sizes": "96x96" }]
+        },
+        {
+            "name": "Patient Portal",
+            "short_name": "Portal",
+            "description": "Access your patient portal",
+            "url": "/patient-portal.html",
+            "icons": [{ "src": "icons/portal-96.png", "sizes": "96x96" }]
+        }
+    ],
+    "categories": ["health", "medical", "lifestyle"],
+    "prefer_related_applications": false
+}

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Smile Gallery - Before and After dental transformations at Dental Institute. See real patient results.">
+    <meta name="keywords" content="dental before after, smile makeover, dental transformations, teeth whitening results">
+    <title>Smile Gallery - Dental Institute</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>😁 Smile Gallery</h1>
+            <p>Real Transformations, Real Smiles</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-brand">
+                <span>Dental</span>Institute
+            </div>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="appointments.html">Book Appointment</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin.html" class="admin-link">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Gallery Hero -->
+    <section class="hero" style="min-height: 40vh;">
+        <h2>See the Difference We Make</h2>
+        <p>Browse through our before and after gallery showcasing real patient transformations</p>
+    </section>
+
+    <!-- Filter Tabs -->
+    <section class="gallery-filters">
+        <div class="container">
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">All</button>
+                <button class="filter-tab" data-filter="whitening">Teeth Whitening</button>
+                <button class="filter-tab" data-filter="veneers">Veneers</button>
+                <button class="filter-tab" data-filter="orthodontics">Orthodontics</button>
+                <button class="filter-tab" data-filter="implants">Implants</button>
+                <button class="filter-tab" data-filter="makeover">Full Makeover</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Whitening Cases -->
+                <div class="gallery-item" data-category="whitening">
+                    <div class="before-after">
+                        <div class="ba-image before">
+                            <div class="ba-placeholder" style="background: linear-gradient(135deg, #d4a574 0%, #c99860 100%);">
+                                <span>Before</span>
+                                <div class="teeth-illustration stained">🦷🦷🦷🦷</div>
+                            </div>
+                            <span class="ba-label">Before</span>
+                        </div>
+                        <div class="ba-image after">
+                            <div class="ba-placeholder" style="background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);">
+                                <span>After</span>
+                                <div class="teeth-illustration white">🦷🦷🦷🦷</div>
+                            </div>
+                            <span class="ba-label">After</span>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Professional Teeth Whitening</h3>
+                        <p>8 shades brighter in just one session</p>
+                        <span class="treatment-badge">Whitening</span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="veneers">
+                    <div class="before-after">
+                        <div class="ba-image before">
+                            <div class="ba-placeholder" style="background: linear-gradient(135deg, #e8d5b7 0%, #d4c4a8 100%);">
+                                <span>Before</span>
+                                <div class="teeth-illustration uneven">🦷 🦷🦷 🦷</div>
+                            </div>
+                            <span class="ba-label">Before</span>
+                        </div>
+                        <div class="ba-image after">
+                            <div class="ba-placeholder" style="background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);">
+                                <span>After</span>
+                                <div class="teeth-illustration perfect">😁</div>
+                            </div>
+                            <span class="ba-label">After</span>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Porcelain Veneers</h3>
+                        <p>Complete smile transformation with 8 veneers</p>
+                        <span class="treatment-badge">Veneers</span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="orthodontics">
+                    <div class="before-after">
+                        <div class="ba-image before">
+                            <div class="ba-placeholder" style="background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);">
+                                <span>Before</span>
+                                <div class="teeth-illustration crooked">🦷↗️🦷↙️🦷</div>
+                            </div>
+                            <span class="ba-label">Before</span>
+                        </div>
+                        <div class="ba-image after">
+                            <div class="ba-placeholder" style="background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);">
+                                <span>After</span>
+                                <div class="teeth-illustration aligned">🦷🦷🦷🦷🦷</div>
+                            </div>
+                            <span class="ba-label">After</span>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Invisalign Treatment</h3>
+                        <p>18 months of clear aligner treatment</p>
+                        <span class="treatment-badge">Orthodontics</span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="implants">
+                    <div class="before-after">
+                        <div class="ba-image before">
+                            <div class="ba-placeholder" style="background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);">
+                                <span>Before</span>
+                                <div class="teeth-illustration gap">🦷__🦷🦷</div>
+                            </div>
+                            <span class="ba-label">Before</span>
+                        </div>
+                        <div class="ba-image after">
+                            <div class="ba-placeholder" style="background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);">
+                                <span>After</span>
+                                <div class="teeth-illustration complete">🦷🦷🦷🦷</div>
+                            </div>
+                            <span class="ba-label">After</span>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Dental Implant</h3>
+                        <p>Single tooth replacement with implant</p>
+                        <span class="treatment-badge">Implants</span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="makeover">
+                    <div class="before-after">
+                        <div class="ba-image before">
+                            <div class="ba-placeholder" style="background: linear-gradient(135deg, #d4a574 0%, #c99860 100%);">
+                                <span>Before</span>
+                                <div class="teeth-illustration damaged">😔</div>
+                            </div>
+                            <span class="ba-label">Before</span>
+                        </div>
+                        <div class="ba-image after">
+                            <div class="ba-placeholder" style="background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);">
+                                <span>After</span>
+                                <div class="teeth-illustration perfect">😁✨</div>
+                            </div>
+                            <span class="ba-label">After</span>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Complete Smile Makeover</h3>
+                        <p>Crowns, veneers, and whitening combined</p>
+                        <span class="treatment-badge">Full Makeover</span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="whitening">
+                    <div class="before-after">
+                        <div class="ba-image before">
+                            <div class="ba-placeholder" style="background: linear-gradient(135deg, #c9b896 0%, #b8a785 100%);">
+                                <span>Before</span>
+                                <div class="teeth-illustration yellowed">🦷🦷🦷</div>
+                            </div>
+                            <span class="ba-label">Before</span>
+                        </div>
+                        <div class="ba-image after">
+                            <div class="ba-placeholder" style="background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);">
+                                <span>After</span>
+                                <div class="teeth-illustration bright">🦷🦷🦷</div>
+                            </div>
+                            <span class="ba-label">After</span>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Laser Whitening</h3>
+                        <p>Dramatic results in 45 minutes</p>
+                        <span class="treatment-badge">Whitening</span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="orthodontics">
+                    <div class="before-after">
+                        <div class="ba-image before">
+                            <div class="ba-placeholder" style="background: linear-gradient(135deg, #f0f0f0 0%, #e5e5e5 100%);">
+                                <span>Before</span>
+                                <div class="teeth-illustration overbite">🦷🦷<br>🦷🦷</div>
+                            </div>
+                            <span class="ba-label">Before</span>
+                        </div>
+                        <div class="ba-image after">
+                            <div class="ba-placeholder" style="background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);">
+                                <span>After</span>
+                                <div class="teeth-illustration aligned">🦷🦷🦷🦷</div>
+                            </div>
+                            <span class="ba-label">After</span>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Metal Braces</h3>
+                        <p>Corrected overbite in 24 months</p>
+                        <span class="treatment-badge">Orthodontics</span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="implants">
+                    <div class="before-after">
+                        <div class="ba-image before">
+                            <div class="ba-placeholder" style="background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);">
+                                <span>Before</span>
+                                <div class="teeth-illustration multiple-gaps">🦷__🦷__🦷</div>
+                            </div>
+                            <span class="ba-label">Before</span>
+                        </div>
+                        <div class="ba-image after">
+                            <div class="ba-placeholder" style="background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);">
+                                <span>After</span>
+                                <div class="teeth-illustration full">🦷🦷🦷🦷🦷</div>
+                            </div>
+                            <span class="ba-label">After</span>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>All-on-4 Implants</h3>
+                        <p>Full arch restoration in one day</p>
+                        <span class="treatment-badge">Implants</span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="veneers">
+                    <div class="before-after">
+                        <div class="ba-image before">
+                            <div class="ba-placeholder" style="background: linear-gradient(135deg, #e5e5e5 0%, #d8d8d8 100%);">
+                                <span>Before</span>
+                                <div class="teeth-illustration chipped">🦷❌🦷🦷</div>
+                            </div>
+                            <span class="ba-label">Before</span>
+                        </div>
+                        <div class="ba-image after">
+                            <div class="ba-placeholder" style="background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);">
+                                <span>After</span>
+                                <div class="teeth-illustration restored">🦷🦷🦷🦷</div>
+                            </div>
+                            <span class="ba-label">After</span>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Composite Veneers</h3>
+                        <p>Repaired chipped front teeth</p>
+                        <span class="treatment-badge">Veneers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Patient Stories -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Patient Stories</h2>
+                <p>Hear from our transformed patients</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card animate-on-scroll">
+                    <p>"I never smiled in photos before. After my smile makeover, I can't stop smiling! Dr. Verma and team changed my life."</p>
+                    <div class="testimonial-author">Priya M.</div>
+                    <div class="testimonial-role">Smile Makeover Patient</div>
+                </div>
+                <div class="testimonial-card animate-on-scroll">
+                    <p>"My teeth whitening results exceeded expectations. The process was comfortable and quick. Highly recommend!"</p>
+                    <div class="testimonial-author">Rajesh K.</div>
+                    <div class="testimonial-role">Whitening Patient</div>
+                </div>
+                <div class="testimonial-card animate-on-scroll">
+                    <p>"After years of hiding my teeth, I finally have the confidence to smile. The veneers look completely natural!"</p>
+                    <div class="testimonial-author">Anita S.</div>
+                    <div class="testimonial-role">Veneer Patient</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="hero" style="min-height: auto; padding: 4rem 2rem;">
+        <h2>Ready for Your Transformation?</h2>
+        <p>Start your smile journey today with a free consultation</p>
+        <div class="hero-buttons">
+            <a href="appointments.html" class="btn btn-primary">Book Free Consultation</a>
+            <a href="services.html" class="btn btn-secondary">View Our Services</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>🦷 Dental Institute</h3>
+                <p>Providing excellent dental care services since 2010. Your smile is our passion and your oral health is our priority.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="appointments.html">Book Appointment</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="services.html">Teeth Whitening</a></li>
+                    <li><a href="services.html">Veneers</a></li>
+                    <li><a href="services.html">Orthodontics</a></li>
+                    <li><a href="services.html">Dental Implants</a></li>
+                    <li><a href="services.html">Smile Makeover</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li>📍 123 Health Street, Varanasi, UP</li>
+                    <li>📞 +91 9876543210</li>
+                    <li>✉️ info@dentalinstitute.com</li>
+                    <li>⏰ Mon-Sat: 9AM - 8PM</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Dental Institute. All rights reserved. | Designed with ❤️ for healthy smiles</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gallery filtering
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const filter = this.dataset.filter;
+                    
+                    // Update active tab
+                    filterTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter items
+                    galleryItems.forEach(item => {
+                        if (filter === 'all' || item.dataset.category === filter) {
+                            item.style.display = 'block';
+                            item.classList.add('animate-on-scroll', 'visible');
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

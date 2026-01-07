@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Patient Portal - Dental Institute. Access your medical records, treatment history, and manage appointments.">
+    <meta name="keywords" content="patient portal, dental records, treatment history, dental appointments">
+    <title>Patient Portal - Dental Institute</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>👤 Patient Portal</h1>
+            <p>Your Health, Your Records</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-brand">
+                <span>Dental</span>Institute
+            </div>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="appointments.html">Book Appointment</a></li>
+                <li><a href="patient-portal.html" class="active">Patient Portal</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Login Modal -->
+    <div id="patient-login-modal" class="patient-modal">
+        <div class="patient-modal-content">
+            <div class="login-tabs">
+                <button class="tab-btn active" data-tab="login">Login</button>
+                <button class="tab-btn" data-tab="register">Register</button>
+            </div>
+            
+            <!-- Login Form -->
+            <div id="login-tab" class="tab-content active">
+                <div class="login-header">
+                    <div class="login-icon">🔐</div>
+                    <h2>Welcome Back</h2>
+                    <p>Login to access your patient portal</p>
+                </div>
+                <form id="patient-login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email Address</label>
+                        <input type="email" id="login-email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+                            <button type="button" class="toggle-password" onclick="togglePasswordVisibility('login-password')">👁️</button>
+                        </div>
+                    </div>
+                    <div class="form-group form-row-inline">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="remember-patient">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-password" onclick="showForgotPassword()">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </form>
+                <div class="demo-hint">
+                    <p>Demo Account: patient@demo.com / patient123</p>
+                </div>
+            </div>
+            
+            <!-- Registration Form -->
+            <div id="register-tab" class="tab-content">
+                <div class="login-header">
+                    <div class="login-icon">📝</div>
+                    <h2>Create Account</h2>
+                    <p>Register to access exclusive patient features</p>
+                </div>
+                <form id="patient-register-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="register-fname">First Name *</label>
+                            <input type="text" id="register-fname" name="fname" placeholder="First name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-lname">Last Name *</label>
+                            <input type="text" id="register-lname" name="lname" placeholder="Last name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email Address *</label>
+                        <input type="email" id="register-email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-phone">Phone Number *</label>
+                        <input type="tel" id="register-phone" name="phone" placeholder="Enter phone number" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="register-dob">Date of Birth *</label>
+                            <input type="date" id="register-dob" name="dob" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-gender">Gender</label>
+                            <select id="register-gender" name="gender">
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password *</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="register-password" name="password" placeholder="Create a password" required minlength="8">
+                            <button type="button" class="toggle-password" onclick="togglePasswordVisibility('register-password')">👁️</button>
+                        </div>
+                        <small class="form-hint">Password must be at least 8 characters</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-confirm">Confirm Password *</label>
+                        <input type="password" id="register-confirm" name="confirm" placeholder="Confirm your password" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="accept-terms" required>
+                            <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Patient Dashboard (Hidden until login) -->
+    <div id="patient-dashboard" class="patient-dashboard hidden">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+            <div class="container">
+                <div class="dashboard-welcome">
+                    <div class="patient-avatar-large" id="patient-avatar">P</div>
+                    <div class="welcome-text">
+                        <h2>Welcome back, <span id="patient-name">Patient</span>!</h2>
+                        <p>Manage your dental health all in one place</p>
+                    </div>
+                </div>
+                <div class="dashboard-actions">
+                    <button class="btn btn-secondary" onclick="showNotifications()">
+                        🔔 <span class="notification-badge-small" id="patient-notification-count">2</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="patientLogout()">🚪 Logout</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Navigation -->
+        <div class="dashboard-nav">
+            <div class="container">
+                <div class="nav-pills">
+                    <button class="nav-pill active" data-section="overview">📊 Overview</button>
+                    <button class="nav-pill" data-section="appointments">📅 Appointments</button>
+                    <button class="nav-pill" data-section="records">📋 Medical Records</button>
+                    <button class="nav-pill" data-section="prescriptions">💊 Prescriptions</button>
+                    <button class="nav-pill" data-section="billing">💳 Billing</button>
+                    <button class="nav-pill" data-section="settings">⚙️ Settings</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <div class="container">
+                <!-- Overview Section -->
+                <section id="section-overview" class="dashboard-section active">
+                    <div class="overview-grid">
+                        <!-- Quick Stats -->
+                        <div class="overview-card">
+                            <div class="overview-icon">📅</div>
+                            <div class="overview-details">
+                                <h3 id="upcoming-count">0</h3>
+                                <p>Upcoming Appointments</p>
+                            </div>
+                        </div>
+                        <div class="overview-card">
+                            <div class="overview-icon">✅</div>
+                            <div class="overview-details">
+                                <h3 id="completed-count">0</h3>
+                                <p>Completed Visits</p>
+                            </div>
+                        </div>
+                        <div class="overview-card">
+                            <div class="overview-icon">💊</div>
+                            <div class="overview-details">
+                                <h3 id="prescription-count">0</h3>
+                                <p>Active Prescriptions</p>
+                            </div>
+                        </div>
+                        <div class="overview-card">
+                            <div class="overview-icon">💰</div>
+                            <div class="overview-details">
+                                <h3 id="balance-due">₹0</h3>
+                                <p>Balance Due</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Next Appointment Card -->
+                    <div class="next-appointment-card">
+                        <div class="card-header">
+                            <h3>📅 Next Appointment</h3>
+                        </div>
+                        <div class="card-body" id="next-appointment-details">
+                            <p class="no-data">No upcoming appointments. <a href="appointments.html">Book one now!</a></p>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="quick-actions">
+                        <h3>Quick Actions</h3>
+                        <div class="actions-grid">
+                            <a href="appointments.html" class="action-card">
+                                <span class="action-icon">📅</span>
+                                <span>Book Appointment</span>
+                            </a>
+                            <a href="#" class="action-card" onclick="switchDashboardSection('records')">
+                                <span class="action-icon">📋</span>
+                                <span>View Records</span>
+                            </a>
+                            <a href="virtual-consultation.html" class="action-card">
+                                <span class="action-icon">📹</span>
+                                <span>Virtual Consult</span>
+                            </a>
+                            <a href="#" class="action-card" onclick="switchDashboardSection('billing')">
+                                <span class="action-icon">💳</span>
+                                <span>Pay Bills</span>
+                            </a>
+                            <a href="contact.html" class="action-card">
+                                <span class="action-icon">💬</span>
+                                <span>Message Us</span>
+                            </a>
+                            <a href="emergency.html" class="action-card emergency">
+                                <span class="action-icon">🚨</span>
+                                <span>Emergency</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="recent-activity-card">
+                        <div class="card-header">
+                            <h3>📜 Recent Activity</h3>
+                        </div>
+                        <div class="card-body" id="recent-activity">
+                            <!-- Will be populated by JS -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Appointments Section -->
+                <section id="section-appointments" class="dashboard-section">
+                    <div class="section-header">
+                        <h2>My Appointments</h2>
+                        <a href="appointments.html" class="btn btn-primary">+ Book New</a>
+                    </div>
+                    
+                    <div class="appointments-tabs">
+                        <button class="apt-tab active" data-filter="upcoming">Upcoming</button>
+                        <button class="apt-tab" data-filter="past">Past</button>
+                        <button class="apt-tab" data-filter="cancelled">Cancelled</button>
+                    </div>
+                    
+                    <div class="appointments-list" id="patient-appointments-list">
+                        <!-- Will be populated by JS -->
+                    </div>
+                </section>
+
+                <!-- Medical Records Section -->
+                <section id="section-records" class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Medical Records</h2>
+                        <button class="btn btn-secondary" onclick="downloadRecords()">📥 Download All</button>
+                    </div>
+                    
+                    <div class="records-grid">
+                        <!-- Treatment History -->
+                        <div class="record-card">
+                            <div class="record-header">
+                                <h3>🦷 Treatment History</h3>
+                            </div>
+                            <div class="record-body" id="treatment-history">
+                                <!-- Will be populated by JS -->
+                            </div>
+                        </div>
+                        
+                        <!-- X-Rays & Scans -->
+                        <div class="record-card">
+                            <div class="record-header">
+                                <h3>📷 X-Rays & Scans</h3>
+                            </div>
+                            <div class="record-body" id="xray-records">
+                                <!-- Will be populated by JS -->
+                            </div>
+                        </div>
+                        
+                        <!-- Dental Chart -->
+                        <div class="record-card full-width">
+                            <div class="record-header">
+                                <h3>🦷 Dental Chart</h3>
+                            </div>
+                            <div class="record-body">
+                                <div class="dental-chart" id="dental-chart">
+                                    <!-- SVG Dental Chart -->
+                                    <div class="chart-row upper">
+                                        <div class="tooth" data-tooth="18">18</div>
+                                        <div class="tooth" data-tooth="17">17</div>
+                                        <div class="tooth" data-tooth="16">16</div>
+                                        <div class="tooth" data-tooth="15">15</div>
+                                        <div class="tooth" data-tooth="14">14</div>
+                                        <div class="tooth" data-tooth="13">13</div>
+                                        <div class="tooth" data-tooth="12">12</div>
+                                        <div class="tooth" data-tooth="11">11</div>
+                                        <div class="tooth" data-tooth="21">21</div>
+                                        <div class="tooth" data-tooth="22">22</div>
+                                        <div class="tooth" data-tooth="23">23</div>
+                                        <div class="tooth" data-tooth="24">24</div>
+                                        <div class="tooth" data-tooth="25">25</div>
+                                        <div class="tooth" data-tooth="26">26</div>
+                                        <div class="tooth" data-tooth="27">27</div>
+                                        <div class="tooth" data-tooth="28">28</div>
+                                    </div>
+                                    <div class="chart-label">Upper Jaw</div>
+                                    <div class="chart-divider"></div>
+                                    <div class="chart-label">Lower Jaw</div>
+                                    <div class="chart-row lower">
+                                        <div class="tooth" data-tooth="48">48</div>
+                                        <div class="tooth" data-tooth="47">47</div>
+                                        <div class="tooth" data-tooth="46">46</div>
+                                        <div class="tooth" data-tooth="45">45</div>
+                                        <div class="tooth" data-tooth="44">44</div>
+                                        <div class="tooth" data-tooth="43">43</div>
+                                        <div class="tooth" data-tooth="42">42</div>
+                                        <div class="tooth" data-tooth="41">41</div>
+                                        <div class="tooth" data-tooth="31">31</div>
+                                        <div class="tooth" data-tooth="32">32</div>
+                                        <div class="tooth" data-tooth="33">33</div>
+                                        <div class="tooth" data-tooth="34">34</div>
+                                        <div class="tooth" data-tooth="35">35</div>
+                                        <div class="tooth" data-tooth="36">36</div>
+                                        <div class="tooth" data-tooth="37">37</div>
+                                        <div class="tooth" data-tooth="38">38</div>
+                                    </div>
+                                    <div class="chart-legend">
+                                        <span class="legend-item"><span class="legend-dot healthy"></span> Healthy</span>
+                                        <span class="legend-item"><span class="legend-dot treated"></span> Treated</span>
+                                        <span class="legend-item"><span class="legend-dot needs-attention"></span> Needs Attention</span>
+                                        <span class="legend-item"><span class="legend-dot missing"></span> Missing</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Allergies & Conditions -->
+                        <div class="record-card">
+                            <div class="record-header">
+                                <h3>⚠️ Allergies & Conditions</h3>
+                                <button class="btn-icon" onclick="editAllergies()">✏️</button>
+                            </div>
+                            <div class="record-body" id="allergies-list">
+                                <p class="no-data">No allergies recorded</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Vaccination Records -->
+                        <div class="record-card">
+                            <div class="record-header">
+                                <h3>💉 Vaccination Records</h3>
+                            </div>
+                            <div class="record-body" id="vaccination-records">
+                                <p class="no-data">No vaccination records available</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Prescriptions Section -->
+                <section id="section-prescriptions" class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Prescriptions</h2>
+                    </div>
+                    
+                    <div class="prescriptions-list" id="prescriptions-list">
+                        <!-- Will be populated by JS -->
+                    </div>
+                </section>
+
+                <!-- Billing Section -->
+                <section id="section-billing" class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Billing & Payments</h2>
+                        <button class="btn btn-primary" onclick="makePayment()">💳 Make Payment</button>
+                    </div>
+                    
+                    <div class="billing-summary">
+                        <div class="billing-card">
+                            <h4>Outstanding Balance</h4>
+                            <p class="amount" id="outstanding-balance">₹0</p>
+                        </div>
+                        <div class="billing-card">
+                            <h4>Last Payment</h4>
+                            <p class="amount" id="last-payment">₹0</p>
+                            <small id="last-payment-date">-</small>
+                        </div>
+                        <div class="billing-card">
+                            <h4>Total Paid (YTD)</h4>
+                            <p class="amount" id="total-paid">₹0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="billing-history">
+                        <h3>Transaction History</h3>
+                        <div class="transactions-list" id="transactions-list">
+                            <!-- Will be populated by JS -->
+                        </div>
+                    </div>
+                    
+                    <div class="insurance-info">
+                        <h3>Insurance Information</h3>
+                        <div class="insurance-card" id="insurance-details">
+                            <p class="no-data">No insurance information on file. <a href="#" onclick="addInsurance()">Add Insurance</a></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings Section -->
+                <section id="section-settings" class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Account Settings</h2>
+                    </div>
+                    
+                    <div class="settings-grid">
+                        <!-- Personal Information -->
+                        <div class="settings-card">
+                            <h3>👤 Personal Information</h3>
+                            <form id="personal-info-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        <input type="text" id="settings-fname" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input type="text" id="settings-lname" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" id="settings-email" value="" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone</label>
+                                    <input type="tel" id="settings-phone" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label>Date of Birth</label>
+                                    <input type="date" id="settings-dob" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <textarea id="settings-address" rows="2"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </form>
+                        </div>
+                        
+                        <!-- Security Settings -->
+                        <div class="settings-card">
+                            <h3>🔐 Security</h3>
+                            <form id="security-form">
+                                <div class="form-group">
+                                    <label>Current Password</label>
+                                    <input type="password" id="current-pass">
+                                </div>
+                                <div class="form-group">
+                                    <label>New Password</label>
+                                    <input type="password" id="new-pass">
+                                </div>
+                                <div class="form-group">
+                                    <label>Confirm New Password</label>
+                                    <input type="password" id="confirm-pass">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Update Password</button>
+                            </form>
+                            
+                            <div class="two-factor-auth">
+                                <h4>Two-Factor Authentication</h4>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="2fa-toggle">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <span>Enable 2FA for extra security</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Notification Preferences -->
+                        <div class="settings-card">
+                            <h3>🔔 Notification Preferences</h3>
+                            <div class="notification-options">
+                                <label class="notification-option">
+                                    <span>Email Reminders</span>
+                                    <input type="checkbox" id="email-reminders" checked>
+                                </label>
+                                <label class="notification-option">
+                                    <span>SMS Reminders</span>
+                                    <input type="checkbox" id="sms-reminders" checked>
+                                </label>
+                                <label class="notification-option">
+                                    <span>Appointment Confirmations</span>
+                                    <input type="checkbox" id="apt-confirmations" checked>
+                                </label>
+                                <label class="notification-option">
+                                    <span>Promotional Offers</span>
+                                    <input type="checkbox" id="promo-offers">
+                                </label>
+                                <label class="notification-option">
+                                    <span>Newsletter</span>
+                                    <input type="checkbox" id="newsletter">
+                                </label>
+                            </div>
+                            <button class="btn btn-primary" onclick="saveNotificationPrefs()">Save Preferences</button>
+                        </div>
+                        
+                        <!-- Emergency Contact -->
+                        <div class="settings-card">
+                            <h3>🚨 Emergency Contact</h3>
+                            <form id="emergency-contact-form">
+                                <div class="form-group">
+                                    <label>Contact Name</label>
+                                    <input type="text" id="emergency-name" placeholder="Emergency contact name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Relationship</label>
+                                    <select id="emergency-relation">
+                                        <option value="">Select Relationship</option>
+                                        <option value="spouse">Spouse</option>
+                                        <option value="parent">Parent</option>
+                                        <option value="sibling">Sibling</option>
+                                        <option value="child">Child</option>
+                                        <option value="friend">Friend</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone Number</label>
+                                    <input type="tel" id="emergency-phone" placeholder="Emergency contact phone">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save Contact</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Danger Zone -->
+                    <div class="danger-zone">
+                        <h3>⚠️ Danger Zone</h3>
+                        <p>Permanently delete your account and all associated data.</p>
+                        <button class="btn btn-danger" onclick="deleteAccount()">Delete Account</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Patient Notifications Modal -->
+    <div id="patient-notifications-modal" class="patient-modal hidden">
+        <div class="patient-modal-content">
+            <div class="modal-header">
+                <h3>🔔 Notifications</h3>
+                <button class="modal-close" onclick="closePatientModal('patient-notifications-modal')">&times;</button>
+            </div>
+            <div class="notifications-list" id="patient-notifications-list">
+                <!-- Will be populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>🦷 Dental Institute</h3>
+                <p>Providing excellent dental care services since 2010. Your smile is our passion and your oral health is our priority.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="appointments.html">Book Appointment</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Patient Resources</h3>
+                <ul>
+                    <li><a href="patient-portal.html">Patient Portal</a></li>
+                    <li><a href="insurance.html">Insurance & Payments</a></li>
+                    <li><a href="blog.html">Dental Tips Blog</a></li>
+                    <li><a href="gallery.html">Smile Gallery</a></li>
+                    <li><a href="faq.html">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li>📍 123 Health Street, Varanasi, UP</li>
+                    <li>📞 +91 9876543210</li>
+                    <li>✉️ info@dentalinstitute.com</li>
+                    <li>⏰ Mon-Sat: 9AM - 8PM</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Dental Institute. All rights reserved. | Designed with ❤️ for healthy smiles</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/patient-portal.js"></script>
+</body>
+</html>
