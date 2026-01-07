@@ -44,7 +44,7 @@ A modern, responsive web application for dental institute management and patient
 ## Deployment
 
 This application is deployed using GitHub Pages. Visit the live site at:
-`https://ravannerdies.github.io/laughing-chainsaw/`
+`https://ravanneverdies.github.io/laughing-chainsaw/`
 
 ## License
 
