@@ -10,7 +10,25 @@ A modern, responsive web application for dental institute management and patient
 - **Appointment Booking**: Online appointment scheduling system
 - **Patient Portal**: View appointments and medical history
 - **Contact Us**: Easy contact form and location information
+- **Admin Panel**: Comprehensive dashboard for clinic management
 - **Responsive Design**: Mobile-friendly interface for all devices
+
+## Admin Panel Features
+
+The admin panel provides a complete management system with:
+
+- **Dashboard**: Overview with statistics, charts, and recent activity
+- **Appointments Management**: View, add, edit, and delete appointments
+- **Patient Records**: Manage patient information and history
+- **Services Management**: Configure dental services and pricing
+- **Staff Management**: Manage staff profiles and schedules
+- **Reports & Analytics**: View reports on appointments and revenue
+- **Messages**: Manage contact form inquiries
+- **Settings**: Configure clinic information, working hours, and more
+
+### Admin Login Credentials (Demo)
+- **Username**: admin
+- **Password**: admin123
 
 ## Technologies Used
 
@@ -27,10 +45,12 @@ A modern, responsive web application for dental institute management and patient
 ├── services.html       # Services page
 ├── appointments.html   # Appointment booking
 ├── contact.html        # Contact page
+├── admin.html          # Admin panel
 ├── css/
 │   └── style.css       # Main stylesheet
 ├── js/
-│   └── script.js       # Main JavaScript
+│   ├── script.js       # Main JavaScript
+│   └── admin.js        # Admin panel JavaScript
 └── assets/
     └── images/         # Images directory
 ```
