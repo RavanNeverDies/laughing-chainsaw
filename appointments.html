@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Book your dental appointment online at Dental Institute. Easy scheduling, flexible timings, and quick confirmation.">
+    <meta name="keywords" content="book dental appointment, dentist appointment Varanasi, online dental booking">
+    <title>Book Appointment - Dental Institute</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>📅 Book Appointment</h1>
+            <p>Schedule Your Visit Today</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-brand">
+                <span>Dental</span>Institute
+            </div>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="appointments.html" class="active">Book Appointment</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Appointment Hero -->
+    <section class="hero" style="min-height: 30vh;">
+        <h2>Schedule Your Dental Visit</h2>
+        <p>Book your appointment in just a few clicks</p>
+    </section>
+
+    <!-- Appointment Form Section -->
+    <section class="appointment-section">
+        <div class="container">
+            <div class="form-container">
+                <div class="section-title" style="margin-bottom: 2rem;">
+                    <h2>Appointment Request</h2>
+                    <p>Fill out the form below and we'll confirm your appointment</p>
+                </div>
+
+                <form id="appointment-form">
+                    <!-- Personal Information -->
+                    <h3 style="color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.2rem;">Personal Information</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" name="age" placeholder="Your age" min="1" max="120">
+                        </div>
+                    </div>
+
+                    <!-- Appointment Details -->
+                    <h3 style="color: var(--primary-color); margin: 2rem 0 1.5rem; font-size: 1.2rem;">Appointment Details</h3>
+
+                    <div class="form-group">
+                        <label for="service">Select Service *</label>
+                        <select id="service" name="service" required>
+                            <option value="">Choose a service</option>
+                            <optgroup label="General Dentistry">
+                                <option value="Dental Checkup">Dental Checkup</option>
+                                <option value="Professional Cleaning">Professional Cleaning</option>
+                                <option value="Cavity Filling">Cavity Filling</option>
+                                <option value="Tooth Extraction">Tooth Extraction</option>
+                                <option value="Gum Treatment">Gum Treatment</option>
+                            </optgroup>
+                            <optgroup label="Orthodontics">
+                                <option value="Braces Consultation">Braces Consultation</option>
+                                <option value="Clear Aligners">Clear Aligners</option>
+                                <option value="Retainers">Retainers</option>
+                            </optgroup>
+                            <optgroup label="Cosmetic Dentistry">
+                                <option value="Teeth Whitening">Teeth Whitening</option>
+                                <option value="Dental Veneers">Dental Veneers</option>
+                                <option value="Smile Makeover">Smile Makeover Consultation</option>
+                            </optgroup>
+                            <optgroup label="Implants & Prosthodontics">
+                                <option value="Dental Implants">Dental Implants</option>
+                                <option value="Dental Bridge">Dental Bridge</option>
+                                <option value="Dentures">Dentures</option>
+                            </optgroup>
+                            <optgroup label="Specialized Services">
+                                <option value="Root Canal">Root Canal Treatment</option>
+                                <option value="Pediatric Dentistry">Pediatric Dentistry</option>
+                                <option value="Emergency Care">Emergency Dental Care</option>
+                            </optgroup>
+                            <option value="Other">Other (Please specify in notes)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Preferred Date *</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Preferred Time *</label>
+                            <select id="time" name="time" required>
+                                <option value="">Select time slot</option>
+                                <option value="09:00 AM">09:00 AM</option>
+                                <option value="09:30 AM">09:30 AM</option>
+                                <option value="10:00 AM">10:00 AM</option>
+                                <option value="10:30 AM">10:30 AM</option>
+                                <option value="11:00 AM">11:00 AM</option>
+                                <option value="11:30 AM">11:30 AM</option>
+                                <option value="12:00 PM">12:00 PM</option>
+                                <option value="02:00 PM">02:00 PM</option>
+                                <option value="02:30 PM">02:30 PM</option>
+                                <option value="03:00 PM">03:00 PM</option>
+                                <option value="03:30 PM">03:30 PM</option>
+                                <option value="04:00 PM">04:00 PM</option>
+                                <option value="04:30 PM">04:30 PM</option>
+                                <option value="05:00 PM">05:00 PM</option>
+                                <option value="05:30 PM">05:30 PM</option>
+                                <option value="06:00 PM">06:00 PM</option>
+                                <option value="06:30 PM">06:30 PM</option>
+                                <option value="07:00 PM">07:00 PM</option>
+                                <option value="07:30 PM">07:30 PM</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="doctor">Preferred Doctor (Optional)</label>
+                        <select id="doctor" name="doctor">
+                            <option value="">No preference</option>
+                            <option value="Dr. Amit Verma">Dr. Amit Verma - Chief Dentist</option>
+                            <option value="Dr. Priya Singh">Dr. Priya Singh - Orthodontist</option>
+                            <option value="Dr. Rahul Gupta">Dr. Rahul Gupta - Oral Surgeon</option>
+                            <option value="Dr. Neha Sharma">Dr. Neha Sharma - Pediatric Dentist</option>
+                            <option value="Dr. Vikram Patel">Dr. Vikram Patel - Endodontist</option>
+                            <option value="Dr. Anjali Mishra">Dr. Anjali Mishra - Cosmetic Dentist</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Additional Notes</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Tell us about your dental concerns or any special requirements..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: flex; align-items: flex-start; cursor: pointer;">
+                            <input type="checkbox" name="terms" required style="width: auto; margin-right: 10px; margin-top: 4px;">
+                            <span>I agree to the terms and conditions and consent to the processing of my personal data for appointment scheduling purposes. *</span>
+                        </label>
+                    </div>
+
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn-primary" style="width: 100%; max-width: 300px;">
+                            Book Appointment
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Patient Portal Section -->
+    <section class="portal-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Your Appointments</h2>
+                <p>View and manage your scheduled appointments</p>
+            </div>
+            <div class="portal-grid">
+                <div class="portal-card">
+                    <h3>📅 Upcoming Appointments</h3>
+                    <div id="appointment-list" class="appointment-list">
+                        <div class="no-appointments">
+                            <p>No appointments found. Book your first appointment above!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portal-card">
+                    <h3>ℹ️ Important Information</h3>
+                    <ul style="color: var(--text-light); line-height: 2;">
+                        <li>✓ Please arrive 10 minutes before your appointment</li>
+                        <li>✓ Bring any previous dental records if available</li>
+                        <li>✓ Inform us of any medications you're taking</li>
+                        <li>✓ Call us if you need to reschedule</li>
+                        <li>✓ Cancellations must be made 24 hours in advance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Need Help?</h2>
+                <p>Contact us directly for immediate assistance</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">📞</div>
+                    <h3>Call Us</h3>
+                    <p>+91 9876543210</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💬</div>
+                    <h3>WhatsApp</h3>
+                    <p>+91 9876543210</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✉️</div>
+                    <h3>Email Us</h3>
+                    <p>appointments@dentalinstitute.com</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⏰</div>
+                    <h3>Working Hours</h3>
+                    <p>Mon-Sat: 9AM - 8PM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>🦷 Dental Institute</h3>
+                <p>Providing excellent dental care services since 2010. Your smile is our passion and your oral health is our priority.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="appointments.html">Book Appointment</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="services.html">General Dentistry</a></li>
+                    <li><a href="services.html">Orthodontics</a></li>
+                    <li><a href="services.html">Cosmetic Dentistry</a></li>
+                    <li><a href="services.html">Dental Implants</a></li>
+                    <li><a href="services.html">Pediatric Dentistry</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li>📍 123 Health Street, Varanasi, UP</li>
+                    <li>📞 +91 9876543210</li>
+                    <li>✉️ info@dentalinstitute.com</li>
+                    <li>⏰ Mon-Sat: 9AM - 8PM</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Dental Institute. All rights reserved. | Designed with ❤️ for healthy smiles</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

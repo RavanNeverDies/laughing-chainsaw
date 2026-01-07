@@ -3,63 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dental Institute - Professional dental care services in Varanasi. Offering general dentistry, orthodontics, cosmetic dentistry, and more.">
+    <meta name="keywords" content="dental, dentist, dental care, teeth, orthodontics, Varanasi, dental clinic">
+    <meta name="author" content="Dental Institute">
     <title>Dental Institute - Professional Care</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 0; text-align: center; }
-        nav { background: #fff; padding: 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        nav ul { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; }
-        nav li { margin: 0 1rem; }
-        nav a { color: #333; text-decoration: none; font-weight: bold; }
-        .hero { background: #f8f9fa; padding: 4rem 2rem; text-align: center; }
-        .services { padding: 3rem 2rem; max-width: 1200px; margin: 0 auto; }
-        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; }
-        .service-card { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center; }
-        footer { background: #333; color: white; text-align: center; padding: 2rem; }
-        @media (max-width: 768px) { nav ul { flex-direction: column; } }
-    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <h1>Dental Institute</h1>
-        <p>Excellence in Dental Care</p>
+        <div class="container">
+            <h1>🦷 Dental Institute</h1>
+            <p>Excellence in Dental Care</p>
+        </div>
     </header>
+
+    <!-- Navigation -->
     <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+        <div class="container">
+            <div class="nav-brand">
+                <span>Dental</span>Institute
+            </div>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="appointments.html">Book Appointment</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
     </nav>
+
+    <!-- Hero Section -->
     <section id="home" class="hero">
         <h2>Welcome to Our Dental Institute</h2>
-        <p>Providing comprehensive dental services with state-of-the-art technology and experienced professionals.</p>
+        <p>Providing comprehensive dental services with state-of-the-art technology and experienced professionals. Your smile is our priority!</p>
+        <div class="hero-buttons">
+            <a href="appointments.html" class="btn btn-primary">Book Appointment</a>
+            <a href="services.html" class="btn btn-secondary">Our Services</a>
+        </div>
     </section>
+
+    <!-- Services Preview -->
     <section id="services" class="services">
-        <h2>Our Services</h2>
-        <div class="service-grid">
-            <div class="service-card">
-                <h3>General Dentistry</h3>
-                <p>Regular checkups, cleanings, and preventive care.</p>
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>Comprehensive dental care for the whole family</p>
             </div>
-            <div class="service-card">
-                <h3>Orthodontics</h3>
-                <p>Braces and aligners for perfect smiles.</p>
+            <div class="service-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">🦷</div>
+                    <h3>General Dentistry</h3>
+                    <p>Regular checkups, cleanings, fillings, and preventive care to maintain your oral health.</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">😁</div>
+                    <h3>Orthodontics</h3>
+                    <p>Braces, clear aligners, and retainers for perfectly aligned teeth and beautiful smiles.</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">✨</div>
+                    <h3>Cosmetic Dentistry</h3>
+                    <p>Teeth whitening, veneers, bonding, and complete smile makeovers.</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">🔧</div>
+                    <h3>Implants & Prosthodontics</h3>
+                    <p>Advanced dental implants and prosthetic solutions for missing teeth.</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">👶</div>
+                    <h3>Pediatric Dentistry</h3>
+                    <p>Gentle, kid-friendly dental care to build healthy habits from an early age.</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">🚨</div>
+                    <h3>Emergency Care</h3>
+                    <p>24/7 emergency dental services for urgent dental problems and accidents.</p>
+                </div>
             </div>
-            <div class="service-card">
-                <h3>Cosmetic Dentistry</h3>
-                <p>Teeth whitening, veneers, and smile makeovers.</p>
-            </div>
-            <div class="service-card">
-                <h3>Implants & Prosthodontics</h3>
-                <p>Advanced solutions for missing teeth.</p>
+            <div class="text-center mt-3">
+                <a href="services.html" class="btn btn-primary">View All Services</a>
             </div>
         </div>
     </section>
-    <footer id="contact">
-        <p>Contact us: info@dentalinstitute.com | Varanasi, UP | &copy; 2025 Dental Institute</p>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Us?</h2>
+                <p>Delivering excellence in dental care since 2010</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-icon">👨‍⚕️</div>
+                    <h3>Expert Dentists</h3>
+                    <p>Highly qualified and experienced dental professionals</p>
+                </div>
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-icon">🏥</div>
+                    <h3>Modern Equipment</h3>
+                    <p>State-of-the-art dental technology and facilities</p>
+                </div>
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-icon">💰</div>
+                    <h3>Affordable Prices</h3>
+                    <p>Quality dental care at competitive prices</p>
+                </div>
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-icon">😊</div>
+                    <h3>Painless Procedures</h3>
+                    <p>Gentle care with minimal discomfort</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Patients Say</h2>
+                <p>Real experiences from our valued patients</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card animate-on-scroll">
+                    <p>"The best dental experience I've ever had. The staff is incredibly friendly and professional. My smile has never looked better!"</p>
+                    <div class="testimonial-author">Priya Sharma</div>
+                    <div class="testimonial-role">Patient since 2019</div>
+                </div>
+                <div class="testimonial-card animate-on-scroll">
+                    <p>"Dr. Verma did an amazing job with my dental implants. The procedure was painless and the results exceeded my expectations."</p>
+                    <div class="testimonial-author">Rajesh Kumar</div>
+                    <div class="testimonial-role">Patient since 2020</div>
+                </div>
+                <div class="testimonial-card animate-on-scroll">
+                    <p>"My kids used to be scared of dentists until we found this place. The pediatric care here is exceptional. Highly recommend!"</p>
+                    <div class="testimonial-author">Anita Patel</div>
+                    <div class="testimonial-role">Patient since 2021</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="hero" style="min-height: auto; padding: 4rem 2rem;">
+        <h2>Ready for Your New Smile?</h2>
+        <p>Book your appointment today and take the first step towards better oral health.</p>
+        <div class="hero-buttons">
+            <a href="appointments.html" class="btn btn-primary">Book Now</a>
+            <a href="contact.html" class="btn btn-secondary">Contact Us</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>🦷 Dental Institute</h3>
+                <p>Providing excellent dental care services since 2010. Your smile is our passion and your oral health is our priority.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="appointments.html">Book Appointment</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="services.html">General Dentistry</a></li>
+                    <li><a href="services.html">Orthodontics</a></li>
+                    <li><a href="services.html">Cosmetic Dentistry</a></li>
+                    <li><a href="services.html">Dental Implants</a></li>
+                    <li><a href="services.html">Pediatric Dentistry</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li>📍 123 Health Street, Varanasi, UP</li>
+                    <li>📞 +91 9876543210</li>
+                    <li>✉️ info@dentalinstitute.com</li>
+                    <li>⏰ Mon-Sat: 9AM - 8PM</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Dental Institute. All rights reserved. | Designed with ❤️ for healthy smiles</p>
+        </div>
     </footer>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
