@@ -6,6 +6,21 @@
     <meta name="description" content="Dental Institute - Professional dental care services in Varanasi. Offering general dentistry, orthodontics, cosmetic dentistry, and more.">
     <meta name="keywords" content="dental, dentist, dental care, teeth, orthodontics, Varanasi, dental clinic">
     <meta name="author" content="Dental Institute">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Dental Institute">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Dental Institute - Professional Dental Care">
+    <meta property="og:description" content="Modern dental care services with online appointment booking, patient portal, and 24/7 emergency support.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dentalinstitute.com">
+    
     <title>Dental Institute - Professional Care</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="css/style.css">
@@ -35,6 +50,7 @@
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="appointments.html">Book Appointment</a></li>
+                <li><a href="patient-portal.html">Patient Portal</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="admin.html" class="admin-link">Admin</a></li>
             </ul>
@@ -208,5 +224,21 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/chat-widget.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registered:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed:', error);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>

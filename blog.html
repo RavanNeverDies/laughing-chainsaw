@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dental Health Blog - Tips, advice, and educational content about oral health from Dental Institute experts.">
+    <meta name="keywords" content="dental tips, oral health, dental care advice, teeth care, dental hygiene">
+    <title>Dental Tips Blog - Dental Institute</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>📚 Dental Tips Blog</h1>
+            <p>Expert Advice for Better Oral Health</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-brand">
+                <span>Dental</span>Institute
+            </div>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="appointments.html">Book Appointment</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin.html" class="admin-link">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Blog Hero -->
+    <section class="hero" style="min-height: 35vh;">
+        <h2>Stay Informed About Your Dental Health</h2>
+        <p>Expert tips, latest news, and educational content from our dental professionals</p>
+    </section>
+
+    <!-- Blog Categories -->
+    <section class="blog-categories">
+        <div class="container">
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="all">All Posts</button>
+                <button class="category-tab" data-category="prevention">Prevention</button>
+                <button class="category-tab" data-category="treatments">Treatments</button>
+                <button class="category-tab" data-category="kids">Kids Dental</button>
+                <button class="category-tab" data-category="cosmetic">Cosmetic</button>
+                <button class="category-tab" data-category="nutrition">Nutrition</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Post -->
+    <section class="featured-post">
+        <div class="container">
+            <article class="blog-featured">
+                <div class="featured-content">
+                    <span class="post-category">Featured</span>
+                    <h2>The Complete Guide to Maintaining Healthy Teeth in 2025</h2>
+                    <p>Discover the latest science-backed tips for optimal oral health, from brushing techniques to diet choices that protect your smile.</p>
+                    <div class="post-meta">
+                        <span>👨‍⚕️ Dr. Amit Verma</span>
+                        <span>📅 January 5, 2025</span>
+                        <span>⏱️ 8 min read</span>
+                    </div>
+                    <a href="#" class="btn btn-primary" onclick="readPost('featured')">Read Article</a>
+                </div>
+                <div class="featured-image">
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 100%; display: flex; align-items: center; justify-content: center; font-size: 5rem; border-radius: 10px;">
+                        🦷✨
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Blog Grid -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="blog-grid" id="blog-grid">
+                <!-- Prevention -->
+                <article class="blog-card" data-category="prevention">
+                    <div class="blog-image" style="background: linear-gradient(135deg, #00d4aa 0%, #00a884 100%);">
+                        <span class="blog-emoji">🪥</span>
+                    </div>
+                    <div class="blog-content">
+                        <span class="post-category">Prevention</span>
+                        <h3>Are You Brushing Your Teeth Wrong? Common Mistakes</h3>
+                        <p>Most people brush their teeth daily, but many make mistakes that can damage their oral health. Learn the correct technique.</p>
+                        <div class="post-meta">
+                            <span>📅 Jan 3, 2025</span>
+                            <span>⏱️ 5 min</span>
+                        </div>
+                        <a href="#" class="read-more" onclick="readPost('brushing')">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="treatments">
+                    <div class="blog-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <span class="blog-emoji">💉</span>
+                    </div>
+                    <div class="blog-content">
+                        <span class="post-category">Treatments</span>
+                        <h3>Everything You Need to Know About Root Canal Treatment</h3>
+                        <p>Root canal doesn't have to be scary. Learn what to expect, how it's done, and why modern techniques make it virtually painless.</p>
+                        <div class="post-meta">
+                            <span>📅 Jan 1, 2025</span>
+                            <span>⏱️ 7 min</span>
+                        </div>
+                        <a href="#" class="read-more" onclick="readPost('root-canal')">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="kids">
+                    <div class="blog-image" style="background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);">
+                        <span class="blog-emoji">👶</span>
+                    </div>
+                    <div class="blog-content">
+                        <span class="post-category">Kids Dental</span>
+                        <h3>When Should Your Child First Visit the Dentist?</h3>
+                        <p>Early dental visits set the foundation for lifelong oral health. Here's what parents need to know about their child's first appointment.</p>
+                        <div class="post-meta">
+                            <span>📅 Dec 28, 2024</span>
+                            <span>⏱️ 4 min</span>
+                        </div>
+                        <a href="#" class="read-more" onclick="readPost('kids-first-visit')">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="cosmetic">
+                    <div class="blog-image" style="background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%);">
+                        <span class="blog-emoji">✨</span>
+                    </div>
+                    <div class="blog-content">
+                        <span class="post-category">Cosmetic</span>
+                        <h3>Teeth Whitening: Professional vs. At-Home Options</h3>
+                        <p>Compare professional whitening treatments with store-bought options. Learn which is right for you and how to maintain results.</p>
+                        <div class="post-meta">
+                            <span>📅 Dec 25, 2024</span>
+                            <span>⏱️ 6 min</span>
+                        </div>
+                        <a href="#" class="read-more" onclick="readPost('whitening')">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="nutrition">
+                    <div class="blog-image" style="background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);">
+                        <span class="blog-emoji">🥗</span>
+                    </div>
+                    <div class="blog-content">
+                        <span class="post-category">Nutrition</span>
+                        <h3>10 Foods That Are Secretly Damaging Your Teeth</h3>
+                        <p>Some "healthy" foods can actually harm your dental health. Discover which foods to enjoy in moderation and better alternatives.</p>
+                        <div class="post-meta">
+                            <span>📅 Dec 22, 2024</span>
+                            <span>⏱️ 5 min</span>
+                        </div>
+                        <a href="#" class="read-more" onclick="readPost('foods')">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="prevention">
+                    <div class="blog-image" style="background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);">
+                        <span class="blog-emoji">🦠</span>
+                    </div>
+                    <div class="blog-content">
+                        <span class="post-category">Prevention</span>
+                        <h3>How to Prevent Gum Disease: A Complete Guide</h3>
+                        <p>Gum disease affects millions. Learn the warning signs, prevention strategies, and treatment options to protect your gums.</p>
+                        <div class="post-meta">
+                            <span>📅 Dec 20, 2024</span>
+                            <span>⏱️ 6 min</span>
+                        </div>
+                        <a href="#" class="read-more" onclick="readPost('gum-disease')">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="treatments">
+                    <div class="blog-image" style="background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);">
+                        <span class="blog-emoji">🔧</span>
+                    </div>
+                    <div class="blog-content">
+                        <span class="post-category">Treatments</span>
+                        <h3>Dental Implants vs. Bridges: Making the Right Choice</h3>
+                        <p>Missing a tooth? Compare implants and bridges to understand which replacement option best fits your needs and budget.</p>
+                        <div class="post-meta">
+                            <span>📅 Dec 18, 2024</span>
+                            <span>⏱️ 8 min</span>
+                        </div>
+                        <a href="#" class="read-more" onclick="readPost('implants-vs-bridges')">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="cosmetic">
+                    <div class="blog-image" style="background: linear-gradient(135deg, #ff5722 0%, #e64a19 100%);">
+                        <span class="blog-emoji">😁</span>
+                    </div>
+                    <div class="blog-content">
+                        <span class="post-category">Cosmetic</span>
+                        <h3>The Truth About Veneers: Pros, Cons, and Care</h3>
+                        <p>Considering veneers for your smile makeover? Get the facts about this popular cosmetic treatment from our experts.</p>
+                        <div class="post-meta">
+                            <span>📅 Dec 15, 2024</span>
+                            <span>⏱️ 7 min</span>
+                        </div>
+                        <a href="#" class="read-more" onclick="readPost('veneers')">Read More →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="kids">
+                    <div class="blog-image" style="background: linear-gradient(135deg, #03a9f4 0%, #0288d1 100%);">
+                        <span class="blog-emoji">🍭</span>
+                    </div>
+                    <div class="blog-content">
+                        <span class="post-category">Kids Dental</span>
+                        <h3>Managing Your Child's Sweet Tooth Without Damaging Teeth</h3>
+                        <p>Kids love sweets, but sugar damages teeth. Learn strategies to satisfy cravings while protecting your child's smile.</p>
+                        <div class="post-meta">
+                            <span>📅 Dec 12, 2024</span>
+                            <span>⏱️ 4 min</span>
+                        </div>
+                        <a href="#" class="read-more" onclick="readPost('kids-sweets')">Read More →</a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Load More -->
+            <div class="load-more-container">
+                <button class="btn btn-secondary" onclick="loadMorePosts()">Load More Articles</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-card">
+                <div class="newsletter-content">
+                    <h2>📬 Subscribe to Our Newsletter</h2>
+                    <p>Get dental tips, special offers, and health updates delivered to your inbox.</p>
+                </div>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Topics -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Popular Topics</h2>
+                <p>Most searched dental health topics</p>
+            </div>
+            <div class="features-grid">
+                <a href="#" class="feature-item topic-card" onclick="filterByTopic('cavity')">
+                    <div class="feature-icon">🦷</div>
+                    <h3>Cavity Prevention</h3>
+                    <p>12 articles</p>
+                </a>
+                <a href="#" class="feature-item topic-card" onclick="filterByTopic('braces')">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Braces & Aligners</h3>
+                    <p>8 articles</p>
+                </a>
+                <a href="#" class="feature-item topic-card" onclick="filterByTopic('sensitivity')">
+                    <div class="feature-icon">❄️</div>
+                    <h3>Tooth Sensitivity</h3>
+                    <p>6 articles</p>
+                </a>
+                <a href="#" class="feature-item topic-card" onclick="filterByTopic('wisdom')">
+                    <div class="feature-icon">🦷</div>
+                    <h3>Wisdom Teeth</h3>
+                    <p>5 articles</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="hero" style="min-height: auto; padding: 4rem 2rem;">
+        <h2>Have a Dental Question?</h2>
+        <p>Our experts are here to help. Book a consultation or send us your question.</p>
+        <div class="hero-buttons">
+            <a href="appointments.html" class="btn btn-primary">Book Consultation</a>
+            <a href="contact.html" class="btn btn-secondary">Ask a Question</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>🦷 Dental Institute</h3>
+                <p>Providing excellent dental care services since 2010. Your smile is our passion and your oral health is our priority.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="appointments.html">Book Appointment</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="blog.html">Dental Tips Blog</a></li>
+                    <li><a href="gallery.html">Smile Gallery</a></li>
+                    <li><a href="patient-portal.html">Patient Portal</a></li>
+                    <li><a href="insurance.html">Insurance Info</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li>📍 123 Health Street, Varanasi, UP</li>
+                    <li>📞 +91 9876543210</li>
+                    <li>✉️ info@dentalinstitute.com</li>
+                    <li>⏰ Mon-Sat: 9AM - 8PM</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Dental Institute. All rights reserved. | Designed with ❤️ for healthy smiles</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Category filtering
+            const categoryTabs = document.querySelectorAll('.category-tab');
+            const blogCards = document.querySelectorAll('.blog-card');
+            
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const category = this.dataset.category;
+                    
+                    categoryTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    blogCards.forEach(card => {
+                        if (category === 'all' || card.dataset.category === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+        
+        function readPost(postId) {
+            alert('Opening article: ' + postId + ' (Demo - article page would open)');
+        }
+        
+        function loadMorePosts() {
+            alert('Loading more articles... (Demo)');
+        }
+        
+        function subscribeNewsletter(e) {
+            e.preventDefault();
+            const email = e.target.querySelector('input[type="email"]').value;
+            e.target.reset();
+            
+            if (window.DentalInstitute) {
+                window.DentalInstitute.showAlert('Thanks for subscribing! Check your email for confirmation.', 'success');
+            } else {
+                alert('Thanks for subscribing!');
+            }
+        }
+        
+        function filterByTopic(topic) {
+            alert('Filtering by topic: ' + topic + ' (Demo)');
+        }
+    </script>
+</body>
+</html>
