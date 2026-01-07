@@ -11,7 +11,32 @@ const AdminState = {
     patients: [],
     services: [],
     staff: [],
-    messages: []
+    messages: [],
+    notifications: [],
+    refreshInterval: null,
+    storageEventBound: false
+};
+
+// Real-time update interval (5 seconds)
+const REALTIME_INTERVAL = 5000;
+
+// Event emitter for real-time updates
+const EventEmitter = {
+    events: {},
+    on(event, callback) {
+        if (!this.events[event]) this.events[event] = [];
+        this.events[event].push(callback);
+    },
+    emit(event, data) {
+        if (this.events[event]) {
+            this.events[event].forEach(callback => callback(data));
+        }
+    },
+    off(event, callback) {
+        if (this.events[event]) {
+            this.events[event] = this.events[event].filter(cb => cb !== callback);
+        }
+    }
 };
 
 // Demo Credentials
@@ -28,7 +53,192 @@ document.addEventListener('DOMContentLoaded', function() {
     initAdminEventListeners();
     initSidebarToggle();
     initDarkMode();
+    initRealTimeUpdates();
 });
+
+/* ===========================================
+   Real-Time Updates System
+   =========================================== */
+function initRealTimeUpdates() {
+    // Listen for storage changes from other tabs/windows
+    if (!AdminState.storageEventBound) {
+        window.addEventListener('storage', handleStorageChange);
+        AdminState.storageEventBound = true;
+    }
+    
+    // Set up periodic refresh for real-time updates
+    if (AdminState.refreshInterval) {
+        clearInterval(AdminState.refreshInterval);
+    }
+    
+    AdminState.refreshInterval = setInterval(() => {
+        if (AdminState.isLoggedIn) {
+            refreshAllData();
+        }
+    }, REALTIME_INTERVAL);
+    
+    // Listen for visibility change to refresh data when tab becomes active
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && AdminState.isLoggedIn) {
+            refreshAllData();
+        }
+    });
+    
+    // Subscribe to real-time events
+    EventEmitter.on('dataChanged', handleDataChange);
+    EventEmitter.on('appointmentCreated', handleNewAppointment);
+    EventEmitter.on('appointmentUpdated', handleAppointmentUpdate);
+    EventEmitter.on('messageReceived', handleNewMessage);
+}
+
+function handleStorageChange(event) {
+    if (!AdminState.isLoggedIn) return;
+    
+    switch(event.key) {
+        case 'appointments':
+            loadAppointmentsData();
+            updateDashboardStats();
+            renderRecentAppointments();
+            renderTodaySchedule();
+            loadReportData();
+            showRealtimeNotification('Appointments data updated');
+            break;
+        case 'patients':
+            loadPatientsData();
+            updateDashboardStats();
+            showRealtimeNotification('Patient records updated');
+            break;
+        case 'contactMessages':
+            loadMessagesData();
+            updateNotificationCount();
+            showRealtimeNotification('New message received');
+            break;
+    }
+}
+
+function refreshAllData() {
+    const currentAppointments = localStorage.getItem('appointments');
+    const currentPatients = localStorage.getItem('patients');
+    const currentMessages = localStorage.getItem('contactMessages');
+    
+    // Check if data has changed
+    const storedAppointments = JSON.stringify(AdminState.appointments);
+    const storedPatients = JSON.stringify(AdminState.patients);
+    const storedMessages = JSON.stringify(AdminState.messages);
+    
+    if (currentAppointments && currentAppointments !== storedAppointments) {
+        AdminState.appointments = JSON.parse(currentAppointments);
+        renderAppointmentsTable();
+        updateDashboardStats();
+        renderRecentAppointments();
+        renderTodaySchedule();
+        renderBarChart();
+        renderDonutChart();
+        loadReportData();
+    }
+    
+    if (currentPatients && currentPatients !== storedPatients) {
+        AdminState.patients = JSON.parse(currentPatients);
+        renderPatientsTable();
+        updateDashboardStats();
+    }
+    
+    if (currentMessages && currentMessages !== storedMessages) {
+        AdminState.messages = JSON.parse(currentMessages);
+        renderMessagesList();
+        updateNotificationCount();
+    }
+}
+
+function handleDataChange(data) {
+    console.log('Data changed:', data);
+    refreshAllData();
+}
+
+function handleNewAppointment(appointment) {
+    addRealtimeNotification({
+        type: 'appointment',
+        message: `New appointment from ${appointment.name}`,
+        time: new Date().toISOString()
+    });
+    refreshAllData();
+}
+
+function handleAppointmentUpdate(appointment) {
+    addRealtimeNotification({
+        type: 'appointment',
+        message: `Appointment updated for ${appointment.name}`,
+        time: new Date().toISOString()
+    });
+    refreshAllData();
+}
+
+function handleNewMessage(message) {
+    addRealtimeNotification({
+        type: 'message',
+        message: `New message from ${message.name}`,
+        time: new Date().toISOString()
+    });
+    refreshAllData();
+}
+
+function addRealtimeNotification(notification) {
+    notification.id = Date.now();
+    AdminState.notifications.unshift(notification);
+    
+    // Keep only last 20 notifications
+    if (AdminState.notifications.length > 20) {
+        AdminState.notifications = AdminState.notifications.slice(0, 20);
+    }
+    
+    updateNotificationBadge();
+    loadNotifications();
+}
+
+function showRealtimeNotification(message) {
+    // Only show if the admin panel is visible
+    if (document.hidden) return;
+    
+    // Create a subtle notification indicator
+    const indicator = document.createElement('div');
+    indicator.className = 'realtime-indicator';
+    indicator.innerHTML = `<span class="pulse"></span> ${message}`;
+    indicator.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        z-index: 9999;
+        animation: slideInUp 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    `;
+    
+    document.body.appendChild(indicator);
+    
+    setTimeout(() => {
+        indicator.style.opacity = '0';
+        indicator.style.transform = 'translateY(20px)';
+        setTimeout(() => indicator.remove(), 300);
+    }, 2000);
+}
+
+function updateNotificationBadge() {
+    const badge = document.getElementById('notification-count');
+    const unreadCount = AdminState.notifications.filter(n => !n.read).length + 
+                       AdminState.messages.filter(m => !m.read).length;
+    
+    if (badge) {
+        badge.textContent = unreadCount;
+        badge.style.display = unreadCount > 0 ? 'flex' : 'none';
+    }
+}
 
 function checkAdminAuth() {
     const isLoggedIn = sessionStorage.getItem('adminLoggedIn') === 'true';
@@ -211,6 +421,9 @@ function loadDashboardData() {
     renderRecentAppointments();
     renderTodaySchedule();
     loadReportData();
+    
+    // Emit data loaded event
+    EventEmitter.emit('dashboardLoaded', { timestamp: new Date().toISOString() });
 }
 
 function loadAppointmentsData() {
@@ -219,11 +432,20 @@ function loadAppointmentsData() {
     if (stored) {
         AdminState.appointments = JSON.parse(stored);
     } else {
-        // Generate demo data
+        // Generate demo data only if no data exists
         AdminState.appointments = generateDemoAppointments();
-        localStorage.setItem('appointments', JSON.stringify(AdminState.appointments));
+        saveAppointmentsToStorage();
     }
     renderAppointmentsTable();
+}
+
+function saveAppointmentsToStorage() {
+    localStorage.setItem('appointments', JSON.stringify(AdminState.appointments));
+    // Trigger storage event for other tabs
+    window.dispatchEvent(new StorageEvent('storage', {
+        key: 'appointments',
+        newValue: JSON.stringify(AdminState.appointments)
+    }));
 }
 
 function loadPatientsData() {
@@ -232,9 +454,17 @@ function loadPatientsData() {
         AdminState.patients = JSON.parse(stored);
     } else {
         AdminState.patients = generateDemoPatients();
-        localStorage.setItem('patients', JSON.stringify(AdminState.patients));
+        savePatientsToStorage();
     }
     renderPatientsTable();
+}
+
+function savePatientsToStorage() {
+    localStorage.setItem('patients', JSON.stringify(AdminState.patients));
+    window.dispatchEvent(new StorageEvent('storage', {
+        key: 'patients',
+        newValue: JSON.stringify(AdminState.patients)
+    }));
 }
 
 function loadServicesData() {
@@ -270,9 +500,17 @@ function loadMessagesData() {
         AdminState.messages = JSON.parse(stored);
     } else {
         AdminState.messages = generateDemoMessages();
-        localStorage.setItem('contactMessages', JSON.stringify(AdminState.messages));
+        saveMessagesToStorage();
     }
     renderMessagesList();
+}
+
+function saveMessagesToStorage() {
+    localStorage.setItem('contactMessages', JSON.stringify(AdminState.messages));
+    window.dispatchEvent(new StorageEvent('storage', {
+        key: 'contactMessages',
+        newValue: JSON.stringify(AdminState.messages)
+    }));
 }
 
 /* ===========================================
@@ -341,14 +579,68 @@ function updateDashboardStats() {
     const appointments = AdminState.appointments;
     const patients = AdminState.patients;
     
-    // Update stat cards
-    document.getElementById('total-appointments').textContent = appointments.length;
-    document.getElementById('total-patients').textContent = patients.length;
-    document.getElementById('pending-appointments').textContent = appointments.filter(a => a.status === 'Pending').length;
+    // Update stat cards with animation
+    animateStatUpdate('total-appointments', appointments.length);
+    animateStatUpdate('total-patients', patients.length);
+    animateStatUpdate('pending-appointments', appointments.filter(a => a.status === 'Pending').length);
     
-    // Calculate revenue (demo)
-    const revenue = appointments.filter(a => a.status === 'Completed').length * 2500;
-    document.getElementById('total-revenue').textContent = formatCurrency(revenue);
+    // Calculate revenue based on service prices
+    const completedAppointments = appointments.filter(a => a.status === 'Completed');
+    let revenue = 0;
+    completedAppointments.forEach(apt => {
+        const service = AdminState.services.find(s => s.name === apt.service);
+        revenue += service ? service.price : 2500;
+    });
+    
+    const revenueEl = document.getElementById('total-revenue');
+    if (revenueEl) {
+        revenueEl.textContent = formatCurrency(revenue);
+    }
+    
+    // Update percentage changes based on recent data
+    updateStatChanges();
+}
+
+function animateStatUpdate(elementId, newValue) {
+    const element = document.getElementById(elementId);
+    if (!element) return;
+    
+    const currentValue = parseInt(element.textContent) || 0;
+    
+    if (currentValue !== newValue) {
+        element.style.transition = 'transform 0.3s ease';
+        element.style.transform = 'scale(1.1)';
+        
+        setTimeout(() => {
+            element.textContent = newValue;
+            element.style.transform = 'scale(1)';
+        }, 150);
+    }
+}
+
+function updateStatChanges() {
+    const appointments = AdminState.appointments;
+    const today = new Date();
+    const lastWeek = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
+    const twoWeeksAgo = new Date(today.getTime() - 14 * 24 * 60 * 60 * 1000);
+    
+    // Count appointments in current week vs last week
+    const thisWeekCount = appointments.filter(a => new Date(a.date) >= lastWeek).length;
+    const lastWeekCount = appointments.filter(a => {
+        const date = new Date(a.date);
+        return date >= twoWeeksAgo && date < lastWeek;
+    }).length;
+    
+    // Calculate percentage change
+    const change = lastWeekCount > 0 ? ((thisWeekCount - lastWeekCount) / lastWeekCount * 100).toFixed(0) : 0;
+    
+    // Update the stat-change elements dynamically
+    const statCards = document.querySelectorAll('.stat-change');
+    statCards.forEach((card, index) => {
+        const isPositive = change >= 0;
+        card.className = `stat-change ${isPositive ? 'positive' : 'negative'}`;
+        card.innerHTML = `<span>${isPositive ? '↑' : '↓'} ${Math.abs(change)}%</span>`;
+    });
 }
 
 function renderBarChart() {
@@ -583,9 +875,13 @@ function deleteAppointment(id) {
         'Are you sure you want to delete this appointment? This action cannot be undone.',
         () => {
             AdminState.appointments = AdminState.appointments.filter(a => a.id !== id);
-            localStorage.setItem('appointments', JSON.stringify(AdminState.appointments));
+            saveAppointmentsToStorage();
             renderAppointmentsTable();
             updateDashboardStats();
+            renderRecentAppointments();
+            renderTodaySchedule();
+            renderBarChart();
+            loadReportData();
             showAdminAlert('Appointment deleted successfully!', 'success');
         }
     );
@@ -611,6 +907,7 @@ function handleAppointmentSubmit(e) {
         const index = AdminState.appointments.findIndex(a => a.id === parseInt(editId));
         if (index !== -1) {
             AdminState.appointments[index] = { ...AdminState.appointments[index], ...appointmentData };
+            EventEmitter.emit('appointmentUpdated', AdminState.appointments[index]);
         }
         showAdminAlert('Appointment updated successfully!', 'success');
     } else {
@@ -618,14 +915,51 @@ function handleAppointmentSubmit(e) {
         appointmentData.id = Date.now();
         appointmentData.createdAt = new Date().toISOString();
         AdminState.appointments.unshift(appointmentData);
+        EventEmitter.emit('appointmentCreated', appointmentData);
         showAdminAlert('Appointment created successfully!', 'success');
+        
+        // Also add/update patient if they don't exist
+        syncPatientFromAppointment(appointmentData);
     }
     
-    localStorage.setItem('appointments', JSON.stringify(AdminState.appointments));
+    saveAppointmentsToStorage();
     renderAppointmentsTable();
     updateDashboardStats();
     renderRecentAppointments();
+    renderTodaySchedule();
+    renderBarChart();
+    loadReportData();
     closeModal('appointment-modal');
+}
+
+function syncPatientFromAppointment(appointmentData) {
+    const existingPatient = AdminState.patients.find(
+        p => p.email.toLowerCase() === appointmentData.email.toLowerCase()
+    );
+    
+    if (existingPatient) {
+        // Update last visit and increment total visits
+        existingPatient.lastVisit = appointmentData.date;
+        existingPatient.totalVisits = (existingPatient.totalVisits || 0) + 1;
+    } else {
+        // Create new patient
+        const newPatient = {
+            id: Date.now(),
+            name: appointmentData.name,
+            email: appointmentData.email,
+            phone: appointmentData.phone,
+            dob: '',
+            address: '',
+            history: '',
+            lastVisit: appointmentData.date,
+            totalVisits: 1,
+            createdAt: new Date().toISOString()
+        };
+        AdminState.patients.unshift(newPatient);
+    }
+    
+    savePatientsToStorage();
+    renderPatientsTable();
 }
 
 function filterAppointments() {
@@ -746,7 +1080,7 @@ function deletePatient(id) {
         'Are you sure you want to delete this patient record? This action cannot be undone.',
         () => {
             AdminState.patients = AdminState.patients.filter(p => p.id !== id);
-            localStorage.setItem('patients', JSON.stringify(AdminState.patients));
+            savePatientsToStorage();
             renderPatientsTable();
             updateDashboardStats();
             showAdminAlert('Patient deleted successfully!', 'success');
@@ -782,7 +1116,7 @@ function handlePatientSubmit(e) {
         showAdminAlert('Patient added successfully!', 'success');
     }
     
-    localStorage.setItem('patients', JSON.stringify(AdminState.patients));
+    savePatientsToStorage();
     renderPatientsTable();
     updateDashboardStats();
     closeModal('patient-modal');
@@ -1004,9 +1338,10 @@ function viewMessage(id) {
     
     // Mark as read
     message.read = true;
-    localStorage.setItem('contactMessages', JSON.stringify(AdminState.messages));
+    saveMessagesToStorage();
     renderMessagesList();
     updateNotificationCount();
+    loadNotifications();
     
     const detailContainer = document.getElementById('message-detail');
     detailContainer.innerHTML = `
@@ -1044,8 +1379,10 @@ function deleteMessage(id) {
         'Are you sure you want to delete this message?',
         () => {
             AdminState.messages = AdminState.messages.filter(m => m.id !== id);
-            localStorage.setItem('contactMessages', JSON.stringify(AdminState.messages));
+            saveMessagesToStorage();
             renderMessagesList();
+            updateNotificationCount();
+            loadNotifications();
             document.getElementById('message-detail').innerHTML = `
                 <div class="no-message-selected">
                     <span>📬</span>
@@ -1061,26 +1398,101 @@ function deleteMessage(id) {
    Notifications
    =========================================== */
 function loadNotifications() {
-    const notifications = [
-        { id: 1, message: 'New appointment request from Raj Malhotra', time: '5 mins ago', type: 'appointment' },
-        { id: 2, message: 'Dr. Priya is on leave tomorrow', time: '1 hour ago', type: 'staff' },
-        { id: 3, message: 'Monthly report is ready for review', time: '2 hours ago', type: 'report' }
-    ];
+    // Combine real-time notifications with system notifications
+    const systemNotifications = generateSystemNotifications();
+    const allNotifications = [...AdminState.notifications, ...systemNotifications]
+        .sort((a, b) => new Date(b.time || b.date) - new Date(a.time || a.date))
+        .slice(0, 10);
     
     const container = document.getElementById('notification-list');
     if (container) {
-        container.innerHTML = notifications.map(notif => `
-            <div class="notification-item">
+        if (allNotifications.length === 0) {
+            container.innerHTML = '<div class="no-notifications"><p>No new notifications</p></div>';
+            return;
+        }
+        
+        container.innerHTML = allNotifications.map(notif => `
+            <div class="notification-item ${notif.read ? '' : 'unread'}" onclick="markNotificationRead(${notif.id})">
                 <span class="notification-type-icon">${getNotificationIcon(notif.type)}</span>
                 <div class="notification-content">
                     <p>${notif.message}</p>
-                    <span class="notification-time">${notif.time}</span>
+                    <span class="notification-time">${formatRelativeTime(notif.time || notif.date)}</span>
                 </div>
             </div>
         `).join('');
     }
     
     updateNotificationCount();
+}
+
+function generateSystemNotifications() {
+    const notifications = [];
+    const today = new Date().toISOString().split('T')[0];
+    
+    // Check for pending appointments
+    const pendingCount = AdminState.appointments.filter(a => a.status === 'Pending').length;
+    if (pendingCount > 0) {
+        notifications.push({
+            id: 'pending-' + Date.now(),
+            message: `${pendingCount} appointment(s) pending confirmation`,
+            time: new Date().toISOString(),
+            type: 'appointment',
+            read: false
+        });
+    }
+    
+    // Check for today's appointments
+    const todayAppointments = AdminState.appointments.filter(a => a.date === today);
+    if (todayAppointments.length > 0) {
+        notifications.push({
+            id: 'today-' + Date.now(),
+            message: `${todayAppointments.length} appointment(s) scheduled for today`,
+            time: new Date().toISOString(),
+            type: 'appointment',
+            read: true
+        });
+    }
+    
+    // Check for unread messages
+    const unreadMessages = AdminState.messages.filter(m => !m.read).length;
+    if (unreadMessages > 0) {
+        notifications.push({
+            id: 'messages-' + Date.now(),
+            message: `${unreadMessages} unread message(s)`,
+            time: new Date().toISOString(),
+            type: 'message',
+            read: false
+        });
+    }
+    
+    return notifications;
+}
+
+function markNotificationRead(id) {
+    const notification = AdminState.notifications.find(n => n.id === id);
+    if (notification) {
+        notification.read = true;
+        updateNotificationBadge();
+    }
+}
+
+function formatRelativeTime(dateString) {
+    if (!dateString) return 'Just now';
+    
+    const date = new Date(dateString);
+    const now = new Date();
+    const diff = now - date;
+    
+    const minutes = Math.floor(diff / 60000);
+    const hours = Math.floor(diff / 3600000);
+    const days = Math.floor(diff / 86400000);
+    
+    if (minutes < 1) return 'Just now';
+    if (minutes < 60) return `${minutes} min${minutes > 1 ? 's' : ''} ago`;
+    if (hours < 24) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+    if (days < 7) return `${days} day${days > 1 ? 's' : ''} ago`;
+    
+    return formatDate(dateString);
 }
 
 function getNotificationIcon(type) {
@@ -1095,10 +1507,21 @@ function getNotificationIcon(type) {
 
 function updateNotificationCount() {
     const unreadMessages = AdminState.messages.filter(m => !m.read).length;
+    const unreadNotifications = AdminState.notifications.filter(n => !n.read).length;
+    const pendingAppointments = AdminState.appointments.filter(a => a.status === 'Pending').length;
+    
+    const totalCount = unreadMessages + unreadNotifications + (pendingAppointments > 0 ? 1 : 0);
+    
     const badge = document.getElementById('notification-count');
     if (badge) {
-        badge.textContent = unreadMessages + 3; // +3 for demo notifications
-        badge.style.display = unreadMessages > 0 ? 'flex' : 'none';
+        badge.textContent = totalCount;
+        badge.style.display = totalCount > 0 ? 'flex' : 'none';
+        
+        // Add pulse animation for new notifications
+        if (totalCount > 0) {
+            badge.classList.add('pulse');
+            setTimeout(() => badge.classList.remove('pulse'), 1000);
+        }
     }
 }
 
@@ -1280,6 +1703,46 @@ function debounceSearch(func, wait) {
 }
 
 /* ===========================================
+   Real-Time Service Status Change Handlers
+   =========================================== */
+function updateAppointmentStatus(id, newStatus) {
+    const index = AdminState.appointments.findIndex(a => a.id === id);
+    if (index !== -1) {
+        AdminState.appointments[index].status = newStatus;
+        saveAppointmentsToStorage();
+        renderAppointmentsTable();
+        updateDashboardStats();
+        renderRecentAppointments();
+        renderTodaySchedule();
+        loadReportData();
+        
+        EventEmitter.emit('appointmentUpdated', AdminState.appointments[index]);
+        showAdminAlert(`Appointment status changed to ${newStatus}`, 'success');
+    }
+}
+
+// Quick status update buttons for appointments
+function renderStatusDropdown(appointmentId, currentStatus) {
+    const statuses = ['Pending', 'Confirmed', 'Completed', 'Cancelled'];
+    return `
+        <select class="status-dropdown" onchange="updateAppointmentStatus(${appointmentId}, this.value)">
+            ${statuses.map(status => `
+                <option value="${status}" ${status === currentStatus ? 'selected' : ''}>${status}</option>
+            `).join('')}
+        </select>
+    `;
+}
+
+/* ===========================================
+   Cleanup on page unload
+   =========================================== */
+window.addEventListener('beforeunload', function() {
+    if (AdminState.refreshInterval) {
+        clearInterval(AdminState.refreshInterval);
+    }
+});
+
+/* ===========================================
    Export Admin Functions
    =========================================== */
 window.AdminPanel = {
@@ -1291,5 +1754,8 @@ window.AdminPanel = {
     editPatient,
     deletePatient,
     adminLogout,
-    showAdminAlert
+    showAdminAlert,
+    refreshAllData,
+    updateAppointmentStatus,
+    EventEmitter
 };

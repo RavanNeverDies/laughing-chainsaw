@@ -291,8 +291,56 @@ function saveAppointment(appointmentData) {
     appointmentData.id = Date.now();
     appointmentData.status = 'Pending';
     appointmentData.createdAt = new Date().toISOString();
-    appointments.push(appointmentData);
+    appointments.unshift(appointmentData); // Add to beginning for latest first
     localStorage.setItem('appointments', JSON.stringify(appointments));
+    
+    // Trigger storage event for real-time sync with admin panel
+    window.dispatchEvent(new StorageEvent('storage', {
+        key: 'appointments',
+        newValue: JSON.stringify(appointments)
+    }));
+    
+    // Also sync patient data
+    syncPatientData(appointmentData);
+}
+
+function syncPatientData(appointmentData) {
+    let patients = JSON.parse(localStorage.getItem('patients')) || [];
+    
+    // Check if patient exists
+    const existingPatient = patients.find(
+        p => p.email.toLowerCase() === appointmentData.email.toLowerCase()
+    );
+    
+    if (existingPatient) {
+        // Update existing patient
+        existingPatient.lastVisit = appointmentData.date;
+        existingPatient.totalVisits = (existingPatient.totalVisits || 0) + 1;
+        existingPatient.phone = appointmentData.phone || existingPatient.phone;
+    } else {
+        // Create new patient
+        const newPatient = {
+            id: Date.now() + 1,
+            name: appointmentData.name,
+            email: appointmentData.email,
+            phone: appointmentData.phone,
+            dob: '',
+            address: '',
+            history: '',
+            lastVisit: appointmentData.date,
+            totalVisits: 1,
+            createdAt: new Date().toISOString()
+        };
+        patients.unshift(newPatient);
+    }
+    
+    localStorage.setItem('patients', JSON.stringify(patients));
+    
+    // Trigger storage event
+    window.dispatchEvent(new StorageEvent('storage', {
+        key: 'patients',
+        newValue: JSON.stringify(patients)
+    }));
 }
 
 /* ===========================================
@@ -316,8 +364,23 @@ function initContactForm() {
             submitBtn.innerHTML = '<span class="spinner"></span> Sending...';
             submitBtn.disabled = true;
             
-            // Simulate API call
+            // Get form data
+            const formData = new FormData(this);
+            const messageData = {
+                id: Date.now(),
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone') || '',
+                subject: formData.get('subject') || 'General Inquiry',
+                message: formData.get('message'),
+                date: new Date().toISOString(),
+                read: false
+            };
+            
+            // Save message
             setTimeout(() => {
+                saveContactMessage(messageData);
+                
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
                 this.reset();
@@ -328,6 +391,18 @@ function initContactForm() {
     }
 }
 
+function saveContactMessage(messageData) {
+    let messages = JSON.parse(localStorage.getItem('contactMessages')) || [];
+    messages.unshift(messageData);
+    localStorage.setItem('contactMessages', JSON.stringify(messages));
+    
+    // Trigger storage event for real-time sync with admin panel
+    window.dispatchEvent(new StorageEvent('storage', {
+        key: 'contactMessages',
+        newValue: JSON.stringify(messages)
+    }));
+}
+
 /* ===========================================
    Patient Portal
    =========================================== */
@@ -336,6 +411,7 @@ function initPatientPortal() {
     
     if (appointmentList) {
         loadAppointments();
+        initRealTimePatientUpdates();
     }
 }
 
@@ -358,12 +434,25 @@ function loadAppointments() {
     appointments.sort((a, b) => new Date(b.date) - new Date(a.date));
     
     appointmentList.innerHTML = appointments.map(apt => `
-        <div class="appointment-item">
-            <div class="date">${formatDate(apt.date)} at ${apt.time}</div>
+        <div class="appointment-item ${apt.status ? apt.status.toLowerCase() : ''}">
+            <div class="date">${formatDate(apt.date)} at ${apt.time || 'TBD'}</div>
             <div class="service">${apt.service}</div>
             <div class="status">${getStatusBadge(apt.status)}</div>
         </div>
     `).join('');
+}
+
+// Real-time updates for patient portal
+function initRealTimePatientUpdates() {
+    // Listen for storage changes
+    window.addEventListener('storage', function(event) {
+        if (event.key === 'appointments') {
+            loadAppointments();
+        }
+    });
+    
+    // Refresh data periodically
+    setInterval(loadAppointments, 30000); // Every 30 seconds
 }
 
 function formatDate(dateString) {
@@ -509,5 +598,7 @@ window.DentalInstitute = {
     showAlert,
     loadAppointments,
     saveAppointment,
+    saveContactMessage,
+    syncPatientData,
     validateForm
 };
