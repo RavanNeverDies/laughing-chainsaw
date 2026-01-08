@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     
-    <!-- Homepage - Best Tooth Doctor Varanasi - Highest Priority -->
+    <!-- Homepage - Best Dental Institute Varanasi - Highest Priority -->
     <url>
         <loc>https://ravanneverdies.github.io/laughing-chainsaw/</loc>
         <lastmod>2026-01-08</lastmod>
@@ -19,6 +19,14 @@
         <lastmod>2026-01-08</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
+    </url>
+    
+    <!-- Dental Institute Varanasi Landing Page - High Priority for Local SEO -->
+    <url>
+        <loc>https://ravanneverdies.github.io/laughing-chainsaw/dental-institute-varanasi.html</loc>
+        <lastmod>2026-01-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.98</priority>
     </url>
     
     <!-- Services Page - Dental Services Varanasi -->
