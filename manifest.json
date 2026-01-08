@@ -1,13 +1,13 @@
 {
-    "name": "Dental Institute - Professional Dental Care",
+    "name": "Dental Institute Varanasi - Best Tooth Doctor & Dental Clinic",
     "short_name": "Dental Institute",
-    "description": "Modern dental care services with online appointment booking, patient portal, and 24/7 emergency support.",
-    "start_url": "/index.html",
+    "description": "Best tooth doctor in Varanasi. Top dental institute offering teeth whitening, dental implants, root canal, braces. Book FREE consultation. 50,000+ happy patients.",
+    "start_url": "/laughing-chainsaw/index.html",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#667eea",
     "orientation": "portrait-primary",
-    "scope": "/",
+    "scope": "/laughing-chainsaw/",
     "lang": "en",
     "icons": [
         {
@@ -62,21 +62,21 @@
             "name": "Book Appointment",
             "short_name": "Book",
             "description": "Schedule a dental appointment",
-            "url": "/appointments.html",
+            "url": "/laughing-chainsaw/appointments.html",
             "icons": [{ "src": "icons/appointment-96.png", "sizes": "96x96" }]
         },
         {
             "name": "Emergency",
             "short_name": "Emergency",
             "description": "24/7 Emergency dental care",
-            "url": "/emergency.html",
+            "url": "/laughing-chainsaw/emergency.html",
             "icons": [{ "src": "icons/emergency-96.png", "sizes": "96x96" }]
         },
         {
             "name": "Patient Portal",
             "short_name": "Portal",
             "description": "Access your patient portal",
-            "url": "/patient-portal.html",
+            "url": "/laughing-chainsaw/patient-portal.html",
             "icons": [{ "src": "icons/portal-96.png", "sizes": "96x96" }]
         }
     ],

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     
-    <!-- Homepage - Highest Priority -->
+    <!-- Homepage - Best Tooth Doctor Varanasi - Highest Priority -->
     <url>
         <loc>https://ravanneverdies.github.io/laughing-chainsaw/</loc>
         <lastmod>2026-01-08</lastmod>
@@ -12,7 +13,7 @@
         <priority>1.0</priority>
     </url>
     
-    <!-- Main Pages -->
+    <!-- Main Pages - Dental Institute Varanasi -->
     <url>
         <loc>https://ravanneverdies.github.io/laughing-chainsaw/index.html</loc>
         <lastmod>2026-01-08</lastmod>
@@ -20,75 +21,84 @@
         <priority>1.0</priority>
     </url>
     
+    <!-- Services Page - Dental Services Varanasi -->
     <url>
         <loc>https://ravanneverdies.github.io/laughing-chainsaw/services.html</loc>
         <lastmod>2026-01-08</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <priority>0.95</priority>
     </url>
     
+    <!-- Appointments - Book Tooth Doctor Varanasi -->
     <url>
         <loc>https://ravanneverdies.github.io/laughing-chainsaw/appointments.html</loc>
         <lastmod>2026-01-08</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
+        <priority>0.95</priority>
     </url>
     
+    <!-- About Page - About Dental Institute Varanasi -->
     <url>
         <loc>https://ravanneverdies.github.io/laughing-chainsaw/about.html</loc>
         <lastmod>2026-01-08</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.85</priority>
     </url>
     
+    <!-- Contact Page - Contact Tooth Doctor Varanasi -->
     <url>
         <loc>https://ravanneverdies.github.io/laughing-chainsaw/contact.html</loc>
         <lastmod>2026-01-08</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.85</priority>
     </url>
     
-    <!-- Additional Features -->
+    <!-- Emergency Services - Emergency Dentist Varanasi -->
     <url>
         <loc>https://ravanneverdies.github.io/laughing-chainsaw/emergency.html</loc>
         <lastmod>2026-01-08</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.90</priority>
     </url>
     
+    <!-- Virtual Consultation - Online Dentist Varanasi -->
     <url>
         <loc>https://ravanneverdies.github.io/laughing-chainsaw/virtual-consultation.html</loc>
         <lastmod>2026-01-08</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
+        <priority>0.80</priority>
     </url>
     
+    <!-- Patient Portal -->
     <url>
         <loc>https://ravanneverdies.github.io/laughing-chainsaw/patient-portal.html</loc>
         <lastmod>2026-01-08</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
+        <priority>0.75</priority>
     </url>
     
+    <!-- Gallery - Smile Transformations Varanasi -->
     <url>
         <loc>https://ravanneverdies.github.io/laughing-chainsaw/gallery.html</loc>
         <lastmod>2026-01-08</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
+        <priority>0.70</priority>
     </url>
     
+    <!-- Blog - Dental Tips Varanasi -->
     <url>
         <loc>https://ravanneverdies.github.io/laughing-chainsaw/blog.html</loc>
         <lastmod>2026-01-08</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
+        <priority>0.75</priority>
     </url>
     
+    <!-- Insurance & Payments -->
     <url>
         <loc>https://ravanneverdies.github.io/laughing-chainsaw/insurance.html</loc>
         <lastmod>2026-01-08</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
+        <priority>0.65</priority>
     </url>
     
 </urlset>
