@@ -1,15 +1,20 @@
-# Robots.txt for Dental Institute
+# Robots.txt for Dental Institute Varanasi - Best Tooth Doctor
 # https://ravanneverdies.github.io/laughing-chainsaw/
 
 User-agent: *
 Allow: /
 
-# Allow all search engines
+# Allow all major search engines
 User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Googlebot-Image
 Allow: /
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Slurp
 Allow: /
@@ -17,11 +22,17 @@ Allow: /
 User-agent: DuckDuckBot
 Allow: /
 
+User-agent: Yandex
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
 # Sitemap location
 Sitemap: https://ravanneverdies.github.io/laughing-chainsaw/sitemap.xml
 
-# Crawl delay for polite crawling
-Crawl-delay: 1
+# Disallow admin page from indexing
+Disallow: /admin.html
 
-# Disallow admin page from indexing (optional - for privacy)
-# Disallow: /admin.html
+# Host directive for canonical domain
+Host: https://ravanneverdies.github.io

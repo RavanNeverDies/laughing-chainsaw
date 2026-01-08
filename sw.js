@@ -2,30 +2,32 @@
    Service Worker for Dental Institute PWA
    =========================================== */
 
-const CACHE_NAME = 'dental-institute-v1';
-const OFFLINE_URL = '/offline.html';
+const CACHE_NAME = 'dental-institute-v2';
+const BASE_PATH = '/laughing-chainsaw';
+const OFFLINE_URL = BASE_PATH + '/offline.html';
 
 // Resources to cache on install
 const PRECACHE_RESOURCES = [
-    '/',
-    '/index.html',
-    '/about.html',
-    '/services.html',
-    '/appointments.html',
-    '/contact.html',
-    '/patient-portal.html',
-    '/emergency.html',
-    '/virtual-consultation.html',
-    '/gallery.html',
-    '/blog.html',
-    '/insurance.html',
-    '/css/style.css',
-    '/js/script.js',
-    '/js/admin.js',
-    '/js/patient-portal.js',
-    '/js/chat-widget.js',
-    '/favicon.svg',
-    '/manifest.json'
+    BASE_PATH + '/',
+    BASE_PATH + '/index.html',
+    BASE_PATH + '/about.html',
+    BASE_PATH + '/services.html',
+    BASE_PATH + '/appointments.html',
+    BASE_PATH + '/contact.html',
+    BASE_PATH + '/patient-portal.html',
+    BASE_PATH + '/emergency.html',
+    BASE_PATH + '/virtual-consultation.html',
+    BASE_PATH + '/gallery.html',
+    BASE_PATH + '/blog.html',
+    BASE_PATH + '/insurance.html',
+    BASE_PATH + '/css/style.css',
+    BASE_PATH + '/js/script.js',
+    BASE_PATH + '/js/admin.js',
+    BASE_PATH + '/js/patient-portal.js',
+    BASE_PATH + '/js/chat-widget.js',
+    BASE_PATH + '/js/seo-enhancements.js',
+    BASE_PATH + '/favicon.svg',
+    BASE_PATH + '/manifest.json'
 ];
 
 // Install event - cache resources
@@ -116,7 +118,7 @@ async function syncAppointments() {
     const pendingAppointments = await getPendingAppointments();
     for (const appointment of pendingAppointments) {
         try {
-            await fetch('/api/appointments', {
+            await fetch(BASE_PATH + '/api/appointments', {
                 method: 'POST',
                 body: JSON.stringify(appointment),
                 headers: { 'Content-Type': 'application/json' }
@@ -132,8 +134,8 @@ async function syncAppointments() {
 self.addEventListener('push', event => {
     const options = {
         body: event.data ? event.data.text() : 'New notification from Dental Institute',
-        icon: '/icons/icon-192x192.png',
-        badge: '/icons/badge-72x72.png',
+        icon: BASE_PATH + '/icons/icon-192x192.png',
+        badge: BASE_PATH + '/icons/badge-72x72.png',
         vibrate: [100, 50, 100],
         data: {
             dateOfArrival: Date.now(),
@@ -156,7 +158,7 @@ self.addEventListener('notificationclick', event => {
 
     if (event.action === 'view') {
         event.waitUntil(
-            clients.openWindow('/patient-portal.html')
+            clients.openWindow(BASE_PATH + '/patient-portal.html')
         );
     }
 });
