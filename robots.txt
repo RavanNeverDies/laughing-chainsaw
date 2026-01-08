@@ -1,0 +1,27 @@
+# Robots.txt for Dental Institute
+# https://ravanneverdies.github.io/laughing-chainsaw/
+
+User-agent: *
+Allow: /
+
+# Allow all search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Sitemap location
+Sitemap: https://ravanneverdies.github.io/laughing-chainsaw/sitemap.xml
+
+# Crawl delay for polite crawling
+Crawl-delay: 1
+
+# Disallow admin page from indexing (optional - for privacy)
+# Disallow: /admin.html
